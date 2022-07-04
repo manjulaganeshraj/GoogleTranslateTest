@@ -1,0 +1,6 @@
+{
+    "sourceLang":"German",
+    "destinationLang":"Spanish",
+    "sourceText":"Demokratien",
+    "expectedTranslation":"Democracias"
+}
