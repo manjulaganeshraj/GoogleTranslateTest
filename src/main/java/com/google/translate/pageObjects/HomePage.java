@@ -128,7 +128,7 @@ public class HomePage extends BasePage {
 
 	public void clickswapLangButton() throws InterruptedException{
 		swapLangButton.click();
-		Thread.sleep(2000); 
+		Thread.sleep(2000); //todo: need to update with driver wait
 
 	}
 
