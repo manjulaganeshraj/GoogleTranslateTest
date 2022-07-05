@@ -5,12 +5,17 @@ import java.util.List;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
 import com.google.translate.page.BasePage;
 
 public class HomePage extends BasePage {
 
 	@FindBy(css = ".OlSOob > c-wiz[role='main'] .kHGNJd  .EO28P > div:nth-of-type(2) > .DiOXab.KY3GZb.VfPpkd-Bz112c-LgbsSe.VfPpkd-Bz112c-LgbsSe-OWXEXe-e5LLRc-SxQuSe.eT1oJ.qiN4Vb.szLmtb.yHy1rc > .VfPpkd-Bz112c-RLmnJb")
 	private WebElement sourceLangDrpdwn;
+	
+	@FindBy(css = "div[class='vSUSRc']")
+	private List<WebElement> langDrpdwnOpen;
 
 	@FindBy(css = ".OlSOob > c-wiz[role='main'] .kHGNJd  .bvzp8c > .OoYv6d > .X4hZJc.pEyuac > .MeCBDd.dykxn.j33Gae > .vSUSRc > .F29iQc >.qSb8Pe >.Llmcnf")
 	private List<WebElement> sourceLangauages;
@@ -56,6 +61,9 @@ public class HomePage extends BasePage {
 
 	@FindBy(css = ".swFHJd")
 	private WebElement translatedTextInput;
+	
+	@FindBy(css = "div[class='DNFg3e']")
+	private List<WebElement> resultValuesOpen;
 
 	private  String siteUrl = null;
 
@@ -77,7 +85,7 @@ public class HomePage extends BasePage {
 		for (WebElement element : sourceLangauages) {
 			if(element.getText().equalsIgnoreCase(sourceLang)) {
 				element.click();
-				Thread.sleep(1000);
+				wait.until(ExpectedConditions.invisibilityOfAllElements(langDrpdwnOpen));
 				break;
 			}
 		}
@@ -92,6 +100,11 @@ public class HomePage extends BasePage {
 		return translatedPrimaryOutput;
 
 	}
+	
+	public List<WebElement> resultValuesOpen(){
+		return resultValuesOpen;
+
+	}
 
 	public List<WebElement> getTranslatedAlternateValues(){
 		return translatedAlternateValues;
@@ -102,6 +115,7 @@ public class HomePage extends BasePage {
 		for (WebElement element : translateLangauages) {
 			if(element.getText().equalsIgnoreCase(translateLang)) {
 				element.click();
+				wait.until(ExpectedConditions.invisibilityOfAllElements(langDrpdwnOpen));
 				break;
 			}
 		}

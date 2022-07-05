@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -83,7 +84,8 @@ public class GoogleTranslateAssignmentTest extends TestBase {
 		
 		//If expected is not in primary display text, try alternate values as per Google Translate by clicking result
 		translatedOutputElement.click();
-		Thread.sleep(1000);
+		
+		wait.until(ExpectedConditions.visibilityOfAllElements(homePage.getTranslatedAlternateValues()));
 		
 		for (WebElement element : homePage.getTranslatedAlternateValues()){
 			
@@ -93,6 +95,7 @@ public class GoogleTranslateAssignmentTest extends TestBase {
 			if(sourceInResult.getText().equalsIgnoreCase(inputText)) {
 				if(translatedTextInResult.getText().equalsIgnoreCase(expectedText)) {
 					translatedTextInResult.click();
+					
 					return true;
 				}
 			}
